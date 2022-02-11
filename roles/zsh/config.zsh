@@ -1,0 +1,2 @@
+# Window Title
+ZSH_TAB_TITLE_CONCAT_FOLDER_PROCESS=true

@@ -1,0 +1,15 @@
+---
+- name: Clone asdf repository
+  git:
+    repo: git@github.com:asdf-vm/asdf.git
+    dest: "${HOME}/.asdf"
+    version: v0.9.0
+
+- name: Add asdf bin dir to system-wide $PATH.
+  copy:
+    dest: /etc/profile.d/custom-path.sh
+    content: 'PATH=$PATH:${HOME}/.asdf'
+  become: true
+  become_method: sudo
+  become_user: root
+

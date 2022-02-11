@@ -1,0 +1,11 @@
+dotfiles_user_home: "{{ '~' | expanduser }}"
+dotfiles_home: "{{ dotfiles_user_home }}/.dotfiles"
+
+full_name: Sly Muzzle
+git_user: slymuzzle
+git_email: slymuzzle@gmail.com
+
+python2_version: 2.7.18
+python3_version: 3.10.2
+golang_version: 1.17.7
+node_version: 16.14.0
