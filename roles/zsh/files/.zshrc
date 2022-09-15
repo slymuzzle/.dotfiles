@@ -68,7 +68,7 @@ ZSH_THEME="eastwood"
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
 
-plugins=(git z docker docker-compose zsh-syntax-highlighting kubectl aws)
+plugins=(git z docker docker-compose zsh-syntax-highlighting zsh-tab-title kubectl aws)
 
 source $ZSH/oh-my-zsh.sh
 
