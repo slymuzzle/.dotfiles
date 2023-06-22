@@ -6,7 +6,7 @@
   become_method: sudo
 
 - name: Check for oh-my-zsh installation
-  stat: "path=${HOME}/.oh-my-zsh"
+  stat: "path={{dotfiles_user_home}}/.oh-my-zsh"
   register: oh_my_zsh_stat
 
 - name: Install oh-my-zsh
@@ -16,20 +16,20 @@
 - name: Clone zsh-tab-title plugin
   git:
     repo: git@github.com:trystan2k/zsh-tab-title.git
-    dest: "${HOME}/.oh-my-zsh/custom/plugins/zsh-tab-title"
+    dest: "{{dotfiles_user_home}}/.oh-my-zsh/custom/plugins/zsh-tab-title"
 
 - name: Check for .zshrc
   stat: path="{{dotfiles_user_home}}/.zshrc"
   register: zshrc_stat
 
 - name: Back up .zshrc
-  command: mv ~/.zshrc ~/.zshrc.bak
+  command: "mv {{dotfiles_user_home}}/.zshrc {{dotfiles_user_home}}/.zshrc.bak"
   args:
     creates: "{{dotfiles_user_home}}/.zshrc.bak"
   when: zshrc_stat.stat.exists
 
 - name: Remove .zshrc
-  command: rm ${HOME}/.zshrc
+  command: "rm {{dotfiles_user_home}}/.zshrc"
   when: zshrc_stat.stat.exists
 
 - name: Symlink .zshrc

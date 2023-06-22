@@ -1,0 +1,33 @@
+---
+- name: Create neovim directory if it does not exist
+  ansible.builtin.file:
+    path: "{{dotfiles_user_home}}/from_sources/neovim"
+    state: directory
+    mode: '0755'
+
+- name: Install neovim {{neovim_version}} using AppImage
+  get_url:
+    url: "https://github.com/neovim/neovim/releases/download/v{{neovim_version}}/nvim.appimage"
+    dest: "{{dotfiles_user_home}}/from_sources/neovim/nvim.appimage"
+    force: true
+    mode: '0755'
+
+- name: Symlink nvim
+  file:
+    src: "{{dotfiles_user_home}}/from_sources/neovim/nvim.appimage"
+    dest: "{{dotfiles_user_home}}/.local/bin/nvim"
+    state: link
+
+- name: Install "neovim" node.js package globally
+  command: "yarn global add neovim"
+
+- name: Install "neovim" python2 support
+  command: "pip2 install --upgrade neovim"
+
+- name: Clone neovim config repository
+  git:
+    repo: git@github.com:slymuzzle/NvChad.git
+    dest: "{{dotfiles_user_home}}/.config/nvim"
+
+- name: Install neovim plugins
+  command: nvim --headless -c 'autocmd User PackerComplete quitall' -c 'PackerSync'

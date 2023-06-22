@@ -25,3 +25,6 @@
     - role: node
       tags:
         - node
+    - role: neovim
+      tags:
+        - neovim

@@ -1,2 +1,2 @@
 ---
-version: "{{golang_version}}"
+golang_version: "{{golang_version}}"
